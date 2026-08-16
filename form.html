@@ -6,7 +6,6 @@
 
   <title>Create Your MOMENTO</title>
 
-  <!-- Forminit SDK -->
   <script src="https://forminit.com/sdk/v1/forminit.js"></script>
 
   <style>
@@ -16,17 +15,30 @@
       padding: 0;
     }
 
+    :root {
+      --cream: #f7eee3;
+      --cream-dark: #ead9c5;
+      --brown: #5a4032;
+      --brown-dark: #3f2b22;
+      --soft-brown: #8a6b58;
+      --white: #fffaf4;
+      --border: #ddcbbb;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f3ee;
-      color: #222;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, #f3dfca 0, transparent 35%),
+        radial-gradient(circle at bottom right, #ead6c1 0, transparent 35%),
+        var(--cream);
+      color: var(--brown-dark);
       min-height: 100vh;
     }
 
     .container {
-      width: min(700px, 92%);
+      width: min(720px, 92%);
       margin: auto;
-      padding: 45px 0;
+      padding: 55px 0;
     }
 
     .header {
@@ -35,61 +47,76 @@
     }
 
     .header h1 {
-      font-size: 42px;
-      letter-spacing: 4px;
-      margin-bottom: 10px;
+      font-size: 44px;
+      letter-spacing: 6px;
+      color: var(--brown-dark);
+      margin-bottom: 12px;
     }
 
     .header p {
-      color: #777;
+      color: var(--soft-brown);
       font-size: 15px;
+      letter-spacing: .4px;
     }
 
     .card {
-      background: #fff;
-      border-radius: 22px;
-      padding: 30px;
-      box-shadow: 0 15px 45px rgba(0,0,0,.08);
+      background: rgba(255, 250, 244, .92);
+      border: 1px solid rgba(221, 203, 187, .8);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: 0 22px 55px rgba(80, 54, 37, .12);
+      backdrop-filter: blur(8px);
     }
 
     .field {
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
     label.title {
       display: block;
+      color: var(--brown-dark);
       font-weight: bold;
-      margin-bottom: 8px;
+      margin-bottom: 9px;
       font-size: 14px;
+      letter-spacing: .3px;
     }
 
     input,
     textarea,
     select {
       width: 100%;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 14px 15px;
+      font-family: inherit;
       font-size: 15px;
-      background: #fff;
+      color: var(--brown-dark);
+      background: #fffdf9;
       outline: none;
+      transition: .2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #a8917f;
     }
 
     input:focus,
     textarea:focus,
     select:focus {
-      border-color: #222;
+      border-color: var(--soft-brown);
+      box-shadow: 0 0 0 3px rgba(138, 107, 88, .10);
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 120px;
       resize: vertical;
     }
 
     .choices {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 11px;
     }
 
     .choice {
@@ -104,43 +131,66 @@
 
     .choice label {
       display: block;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 14px 10px;
       text-align: center;
       cursor: pointer;
+      color: var(--brown);
+      background: #fffdf9;
       font-size: 14px;
-      transition: .2s;
+      transition: .2s ease;
+    }
+
+    .choice label:hover {
+      border-color: var(--soft-brown);
+      background: #fbf1e6;
     }
 
     .choice input:checked + label {
-      background: #222;
-      color: #fff;
-      border-color: #222;
+      background: var(--brown);
+      color: #fffaf4;
+      border-color: var(--brown);
+    }
+
+    .photos-note {
+      display: block;
+      margin-top: 8px;
+      color: var(--soft-brown);
+      font-size: 12px;
+      line-height: 1.5;
     }
 
     .submit {
       width: 100%;
       border: none;
-      border-radius: 14px;
-      padding: 16px;
-      background: #222;
-      color: #fff;
+      border-radius: 15px;
+      padding: 17px;
+      background: var(--brown);
+      color: var(--white);
+      font-family: inherit;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 8px;
+      margin-top: 6px;
+      transition: .2s ease;
+    }
+
+    .submit:hover {
+      background: var(--brown-dark);
+      transform: translateY(-1px);
     }
 
     .submit:disabled {
-      opacity: .6;
+      opacity: .65;
       cursor: wait;
+      transform: none;
     }
 
     .success {
       display: none;
       text-align: center;
-      padding: 35px 10px;
+      padding: 45px 15px;
     }
 
     .success.active {
@@ -148,44 +198,62 @@
     }
 
     .success h2 {
-      font-size: 32px;
-      margin-bottom: 15px;
+      color: var(--brown-dark);
+      font-size: 34px;
+      margin-bottom: 16px;
     }
 
     .success p {
-      color: #666;
-      line-height: 1.7;
+      color: var(--soft-brown);
+      line-height: 1.8;
+      font-size: 15px;
     }
 
     .back {
       display: inline-block;
-      margin-top: 25px;
-      color: #222;
+      margin-top: 28px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: var(--brown);
+      color: var(--white);
       text-decoration: none;
       font-weight: bold;
+      font-size: 14px;
     }
 
     .error {
       display: none;
-      color: #a33;
-      background: #fff1f1;
-      border-radius: 10px;
+      color: #8a3f32;
+      background: #f8e7e2;
+      border: 1px solid #e5c2b9;
+      border-radius: 11px;
       padding: 12px;
-      margin-top: 15px;
-      font-size: 14px;
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 22px;
+      color: var(--soft-brown);
+      font-size: 12px;
+      opacity: .85;
     }
 
     @media (max-width: 600px) {
       .container {
-        padding: 25px 0;
+        padding: 30px 0;
       }
 
       .card {
-        padding: 22px;
+        padding: 23px;
+        border-radius: 21px;
       }
 
       .header h1 {
-        font-size: 32px;
+        font-size: 34px;
+        letter-spacing: 5px;
       }
 
       .choices {
@@ -214,6 +282,7 @@
         <!-- FOR -->
         <div class="field">
           <label class="title" for="for">For *</label>
+
           <input
             id="for"
             type="text"
@@ -226,6 +295,7 @@
         <!-- FROM -->
         <div class="field">
           <label class="title" for="from">From *</label>
+
           <input
             id="from"
             type="text"
@@ -341,33 +411,7 @@
               <label for="package-premium">Premium</label>
             </div>
 
-            <div class="choice">
-              <input
-                id="package-custom"
-                type="radio"
-                name="fi-radio-package"
-                value="Custom"
-              >
-              <label for="package-custom">Custom</label>
-            </div>
-
           </div>
-        </div>
-
-        <!-- DELIVERY -->
-        <div class="field">
-          <label class="title" for="delivery">Delivery *</label>
-
-          <select
-            id="delivery"
-            name="fi-select-delivery"
-            required
-          >
-            <option value="">Choose delivery method</option>
-            <option value="Digital">Digital</option>
-            <option value="Physical">Physical</option>
-            <option value="Digital + Physical">Digital + Physical</option>
-          </select>
         </div>
 
         <!-- PHOTOS -->
@@ -383,7 +427,7 @@
             required
           >
 
-          <small style="display:block;margin-top:8px;color:#888;">
+          <small class="photos-note">
             Choose the photos you'd like to include in your MOMENTO.
           </small>
         </div>
@@ -407,12 +451,18 @@
           Submit request ✦
         </button>
 
-        <div class="error" id="error-message"></div>
+        <div
+          class="error"
+          id="error-message"
+        ></div>
 
       </form>
 
       <!-- SUCCESS -->
-      <div class="success" id="success">
+      <div
+        class="success"
+        id="success"
+      >
 
         <h2>Request received ✨</h2>
 
@@ -422,13 +472,20 @@
           We'll start working on your memory soon.
         </p>
 
-        <a class="back" href="index.html">
+        <a
+          class="back"
+          href="index.html"
+        >
           Back to MOMENTO
         </a>
 
       </div>
 
     </section>
+
+    <p class="footer-note">
+      Made with memories ✦
+    </p>
 
   </main>
 
@@ -486,4 +543,4 @@
   </script>
 
 </body>
-  </html>
+</html>
