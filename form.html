@@ -17,7 +17,6 @@
 
     :root {
       --cream: #f7eee3;
-      --cream-dark: #ead9c5;
       --brown: #5a4032;
       --brown-dark: #3f2b22;
       --soft-brown: #8a6b58;
@@ -274,10 +273,7 @@
 
     <section class="card">
 
-      <form
-        id="momento-form"
-        enctype="multipart/form-data"
-      >
+      <form id="momento-form" enctype="multipart/form-data">
 
         <!-- FOR -->
         <div class="field">
@@ -301,6 +297,20 @@
             type="text"
             name="fi-text-from"
             placeholder="Who is it from?"
+            required
+          >
+        </div>
+
+        <!-- WHATSAPP NUMBER -->
+        <div class="field">
+          <label class="title" for="whatsapp">WhatsApp Number *</label>
+
+          <input
+            id="whatsapp"
+            type="tel"
+            name="fi-phone-whatsapp"
+            placeholder="Enter your WhatsApp number"
+            autocomplete="tel"
             required
           >
         </div>
@@ -543,4 +553,4 @@
   </script>
 
 </body>
-</html>
+              </html>
