@@ -3,159 +3,94 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Create your MOMENTO</title>
+<title>MOMENTO — Your memories deserve a place.</title>
+<meta name="description" content="MOMENTO creates cinematic interactive memory websites made for your story.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
-:root{--bg:#0b0a0a;--panel:#141211;--text:#f5eee7;--muted:#a79d95;--accent:#e4b89d;--line:rgba(255,255,255,.13)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;font-weight:300}
-.wrap{width:min(820px,92vw);margin:auto;padding:34px 0 80px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:55px}.logo{letter-spacing:.2em;font-size:17px}.stepcount{font-size:11px;color:var(--muted);letter-spacing:.15em}
-.progress{height:2px;background:var(--line);margin-bottom:60px}.bar{height:100%;width:16.66%;background:var(--accent);transition:.35s}
-.kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}.title{font:500 clamp(46px,8vw,78px)/.9 "Cormorant Garamond",serif;margin:0 0 18px}.lead{color:var(--muted);line-height:1.7;max-width:600px}
-.panel{display:none}.panel.active{display:block}.field{margin:28px 0}.field label{display:block;font-size:12px;margin-bottom:10px;color:#ded5ce}.hint{font-size:11px;color:#746d68;margin-top:7px}
-input,textarea,select{width:100%;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:3px;padding:15px 16px;font:300 14px Inter,sans-serif;outline:none}
-textarea{min-height:130px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:rgba(228,184,157,.7)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.choice input{display:none}.choice label{display:block;border:1px solid var(--line);background:var(--panel);padding:20px;cursor:pointer;min-height:80px;transition:.2s}.choice input:checked+label{border-color:var(--accent);background:#1b1513}.choice strong{display:block;font-family:"Cormorant Garamond",serif;font-size:25px;font-weight:500}.choice span{font-size:10px;color:var(--muted)}
-.actions{display:flex;justify-content:space-between;gap:12px;margin-top:45px}.btn{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.04);color:white;border-radius:999px;padding:14px 21px;cursor:pointer;font-size:11px;letter-spacing:.1em;text-transform:uppercase}.btn.primary{background:var(--text);color:#111;border-color:var(--text)}.btn:disabled{opacity:.35;cursor:not-allowed}
-.upload{border:1px dashed rgba(255,255,255,.25);padding:30px;text-align:center;background:#111}.upload input{border:0;padding:15px 0;background:transparent}.files{font-size:11px;color:var(--muted);line-height:1.8;text-align:left;margin-top:10px}
-.summary{border:1px solid var(--line);background:var(--panel);padding:25px}.summary div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:12px 0;gap:20px}.summary div:last-child{border-bottom:0}.summary span{color:var(--muted);font-size:12px}.summary b{font-weight:400;font-size:12px;text-align:right}
-.success{text-align:center;padding:70px 10px}.success h2{font:500 64px/1 "Cormorant Garamond",serif;margin:15px 0}.success p{color:var(--muted);line-height:1.8}.wa{display:inline-flex;margin-top:20px;text-decoration:none}
-.note{margin-top:30px;padding:16px;border-left:1px solid var(--accent);color:var(--muted);font-size:11px;line-height:1.7}
-@media(max-width:620px){.grid,.choices{grid-template-columns:1fr}.wrap{padding-top:25px}.actions{margin-top:35px}.title{font-size:54px}}
+:root{--bg:#0b0a0a;--soft:#151211;--text:#f5eee7;--muted:#a79d95;--accent:#e4b89d;--line:rgba(255,255,255,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;font-weight:300}
+a{color:inherit;text-decoration:none}.serif{font-family:"Cormorant Garamond",serif}
+.nav{position:fixed;z-index:10;top:0;left:0;right:0;padding:22px 6vw;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);backdrop-filter:blur(5px)}
+.logo{font-size:18px;letter-spacing:.18em;font-weight:500}.nav a{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#d6cdc5}
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:100px 22px;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(0,0,0,.15),#0b0a0a),url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=2000&q=85") center/cover}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,transparent 0 18%,rgba(0,0,0,.65) 80%)}
+.hero-in{position:relative;z-index:1;max-width:920px}.kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:25px}
+h1{font-size:clamp(70px,12vw,150px);line-height:.78;font-weight:500;margin:0 0 30px}.hero p{font-family:"Cormorant Garamond",serif;font-size:clamp(25px,3vw,38px);color:#e9dfd7;margin:0 auto 38px;max-width:680px}
+.btn{display:inline-flex;align-items:center;gap:14px;padding:15px 23px;border:1px solid rgba(255,255,255,.4);border-radius:999px;background:rgba(255,255,255,.06);transition:.25s;cursor:pointer;font-size:12px;letter-spacing:.08em}
+.btn:hover{background:#fff;color:#111;transform:translateY(-2px)}
+.section{padding:120px 7vw;max-width:1180px;margin:auto}.center{text-align:center}.eyebrow{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:15px}
+h2{font-family:"Cormorant Garamond",serif;font-size:clamp(52px,7vw,92px);line-height:.9;font-weight:500;margin:0 0 24px}.lead{color:var(--muted);line-height:1.8;max-width:650px;margin:0 auto}
+.preview{margin-top:55px;border:1px solid var(--line);padding:10px;background:#111;box-shadow:0 30px 100px rgba(0,0,0,.35)}.preview img{width:100%;display:block;height:520px;object-fit:cover}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:60px}.step{background:var(--bg);padding:40px 30px;min-height:250px}.num{font-size:11px;color:var(--accent);letter-spacing:.15em}.step h3{font-family:"Cormorant Garamond",serif;font-size:36px;font-weight:500;margin:45px 0 10px}.step p{color:var(--muted);line-height:1.7;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:55px}.card{border:1px solid var(--line);padding:34px 28px;background:linear-gradient(145deg,#151211,#0d0c0c);min-height:370px;display:flex;flex-direction:column}.tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}.card h3{font-family:"Cormorant Garamond",serif;font-size:42px;font-weight:500;margin:20px 0 10px}.price{font-size:28px;margin:10px 0 25px}.card ul{padding:0;margin:0;list-style:none;color:var(--muted);line-height:2;font-size:13px}.card li:before{content:"— ";color:var(--accent)}.card .btn{margin-top:auto;width:max-content}
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.feature-img{height:560px;background:url("https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=1200&q=85") center/cover}.quote{font-family:"Cormorant Garamond",serif;font-size:48px;line-height:1.05}
+.faq{border-top:1px solid var(--line);margin-top:50px}.faq details{border-bottom:1px solid var(--line);padding:24px 0}.faq summary{cursor:pointer;font-family:"Cormorant Garamond",serif;font-size:28px}.faq p{color:var(--muted);line-height:1.8;max-width:700px}
+.cta-section{padding:150px 7vw;text-align:center;background:linear-gradient(180deg,#0b0a0a,#15100e)}.cta-section h2{max-width:800px;margin:0 auto 35px}
+footer{border-top:1px solid var(--line);padding:30px 7vw;display:flex;justify-content:space-between;color:#766e68;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+@media(max-width:760px){.nav{padding:18px 20px}.nav a{display:none}.section{padding:85px 22px}.steps,.cards,.feature{grid-template-columns:1fr}.preview img{height:380px}.feature-img{height:430px}.quote{font-size:40px}footer{display:block;line-height:2.2}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="top"><div class="logo">MOMENTO</div><div class="stepcount" id="stepcount">01 / 06</div></div>
-  <div class="progress"><div class="bar" id="bar"></div></div>
+<nav class="nav"><div class="logo">MOMENTO</div><a href="#how">How it works</a><a href="#packages">Packages</a><a href="#faq">FAQ</a></nav>
 
-  <form id="orderForm" name="momento-orders" method="POST"
-      data-netlify="true" data-netlify-honeypot="bot-field"
-      enctype="multipart/form-data">
-      <input type="hidden" name="form-name" value="momento-orders">
-      <input type="hidden" name="subject" value="New MOMENTO Order">
-      <p style="display:none"><label>Don’t fill this out: <input name="bot-field"></label></p>
-    <section class="panel active">
-      <div class="kicker">01 · Tell us about it</div>
-      <h1 class="title">Let's start<br>with the story.</h1>
-      <p class="lead">A few details help us understand who this MOMENTO is for.</p>
-      <div class="grid">
-        <div class="field"><label>Your name *</label><input required name="from" placeholder="Your name"></div>
-        <div class="field"><label>Their name *</label><input required name="to" placeholder="Their name"></div>
-      </div>
-      <div class="grid">
-        <div class="field"><label>Your email *</label><input required type="email" name="email" placeholder="you@example.com"></div>
-        <div class="field"><label>WhatsApp number *</label><input required name="whatsapp" placeholder="+20 ..."></div>
-      </div>
-      <div class="field"><label>What's the occasion? *</label><select required name="occasion"><option value="">Choose one</option><option>Birthday</option><option>Anniversary</option><option>Friendship</option><option>Graduation</option><option>Just because</option><option>Other</option></select></div>
-      <div class="actions"><span></span><button class="btn primary" type="button" onclick="next()">Continue →</button></div>
-    </section>
-
-    <section class="panel">
-      <div class="kicker">02 · Choose your vibe</div><h1 class="title">How should<br>it feel?</h1><p class="lead">Pick the mood. We'll use it as a starting point for the visual direction.</p>
-      <div class="choices field">
-        <div class="choice"><input type="radio" required name="vibe" id="romantic" value="Romantic"><label for="romantic"><strong>Romantic</strong><span>Soft · intimate · warm</span></label></div>
-        <div class="choice"><input type="radio" name="vibe" id="friendship" value="Friendship"><label for="friendship"><strong>Friendship</strong><span>Fun · playful · nostalgic</span></label></div>
-        <div class="choice"><input type="radio" name="vibe" id="cinematic" value="Cinematic"><label for="cinematic"><strong>Cinematic</strong><span>Moody · dramatic · elegant</span></label></div>
-        <div class="choice"><input type="radio" name="vibe" id="minimal" value="Minimal"><label for="minimal"><strong>Minimal</strong><span>Clean · calm · timeless</span></label></div>
-      </div>
-      <div class="field"><label>Favorite color (optional)</label><input name="color" placeholder="e.g. black, cream, burgundy"></div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="next()">Continue →</button></div>
-    </section>
-
-    <section class="panel">
-      <div class="kicker">03 · Tell us the story</div><h1 class="title">Give us<br>the good parts.</h1><p class="lead">Don't worry about perfect writing. Just tell us what happened and we'll shape it into the experience.</p>
-      <div class="field"><label>Important dates & what happened</label><textarea name="timeline" placeholder="20/02 — the day we met...
-06/03 — our first adventure...
-18/04 — that unforgettable day..."></textarea></div>
-      <div class="field"><label>Favorite memories / inside jokes</label><textarea name="memories" placeholder="The little moments you never want to forget..."></textarea></div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="next()">Continue →</button></div>
-    </section>
-
-    <section class="panel">
-      <div class="kicker">04 · Add the memories</div><h1 class="title">Now bring<br>it to life.</h1><p class="lead">Choose the photos you'd like us to use. For the first version, 8–20 good photos is a great range.</p>
-      <div class="upload field">
-        <label>Upload your photos (up to 8 for this MVP)</label>
-        <div class="grid" style="margin-top:15px">
-          <input name="photo-01" type="file" accept="image/*">
-          <input name="photo-02" type="file" accept="image/*">
-          <input name="photo-03" type="file" accept="image/*">
-          <input name="photo-04" type="file" accept="image/*">
-          <input name="photo-05" type="file" accept="image/*">
-          <input name="photo-06" type="file" accept="image/*">
-          <input name="photo-07" type="file" accept="image/*">
-          <input name="photo-08" type="file" accept="image/*">
-        </div>
-        <div class="files">For this first live version, keep the total upload size under 8 MB. We can upgrade the upload system later for larger galleries.</div>
-      </div>
-      <div class="field"><label>Anything special about the photos?</label><textarea name="photoNotes" placeholder="e.g. Put the beach photo near the end..."></textarea></div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="next()">Continue →</button></div>
-    </section>
-
-    <section class="panel">
-      <div class="kicker">05 · Final details</div><h1 class="title">One last<br>thing.</h1>
-      <div class="grid">
-        <div class="field"><label>Package *</label><select required name="package"><option value="">Choose package</option><option>Starter — 199 EGP</option><option>Story — 349 EGP</option><option>Cinematic — 599 EGP</option></select></div>
-        <div class="field"><label>Preferred delivery date *</label><input required name="delivery" type="date"></div>
-      </div>
-      <div class="field"><label>Final message</label><textarea name="letter" placeholder="The message you'd like at the end of the journey..."></textarea></div>
-      <div class="field"><label>Extra notes</label><textarea name="notes" placeholder="Anything else we should know?"></textarea></div>
-      <div class="note">This form is prepared for Netlify Forms. Once deployed on Netlify, orders will appear in your Netlify Forms dashboard.</div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="review()">Review →</button></div>
-    </section>
-
-    <section class="panel">
-      <div class="kicker">06 · Almost there</div><h1 class="title">Your MOMENTO<br>is taking shape.</h1>
-      <div class="summary" id="summary"></div>
-      <div class="note">After submitting, the final live version will send the order to our dashboard and you'll receive a confirmation. For now, this is a design prototype.</div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="finish()">Submit request ✦</button></div>
-    </section>
-  </form>
-
-  <section class="panel" id="success">
-    <div class="success">
-      <div class="kicker">MOMENTO · Request received</div>
-      <h2>Beautiful.<br>We're ready.</h2>
-      <p>Your request has been prepared locally as a prototype.<br>Next, we'll connect this flow to real submissions and payments.</p>
-      <a class="btn wa" href="https://wa.me/?text=Hi%20MOMENTO!%20I%20just%20submitted%20a%20request." target="_blank">Continue on WhatsApp →</a>
-    </div>
-  </section>
+<header class="hero">
+<div class="hero-in">
+<div class="kicker">Interactive memory experiences</div>
+<h1 class="serif">Your memories<br>deserve a place.</h1>
+<p>A cinematic digital gift, made around the story you never want to forget.</p>
+<a class="btn" href="#preview">See the experience <span>↓</span></a>
 </div>
+</header>
 
-<script>
-let step=0;
-const panels=[...document.querySelectorAll('#orderForm .panel')];
-const count=document.getElementById('stepcount'),bar=document.getElementById('bar');
-function show(n){step=n;panels.forEach((p,i)=>p.classList.toggle('active',i===n));count.textContent=String(n+1).padStart(2,'0')+' / 06';bar.style.width=((n+1)/6*100)+'%';window.scrollTo({top:0,behavior:'smooth'})}
-function validate(){const fields=panels[step].querySelectorAll('input[required],select[required],textarea[required]');for(const f of fields){if(!f.checkValidity()){f.reportValidity();return false}}return true}
-function next(){if(validate())show(step+1)}function prev(){show(step-1)}
+<section class="section center" id="preview">
+<div class="eyebrow">The MOMENTO experience</div>
+<h2>Not just a website.<br>A memory you can revisit.</h2>
+<p class="lead">Turn your photos, dates, inside jokes and words into an interactive journey made for one special person.</p>
+<div class="preview"><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1800&q=85" alt="Friends making memories"></div>
+<br><br><a class="btn" href="momento-demo.zip">Open the demo ↗</a>
+</section>
 
-function review(){
- if(!validate())return;
- const fd=new FormData(document.getElementById('orderForm'));
- const rows=[['For',fd.get('to')],['From',fd.get('from')],['Occasion',fd.get('occasion')],['Vibe',fd.get('vibe')],['Package',fd.get('package')],['Delivery',fd.get('delivery')],['Photos',[...document.querySelectorAll('input[type=file]')].filter(x=>x.files.length).length+' selected']];
- document.getElementById('summary').innerHTML=rows.map(r=>`<div><span>${r[0]}</span><b>${escapeHtml(r[1]||'—')}</b></div>`).join('');
- show(5);
-}
-async function finish(){
-  const form=document.getElementById('orderForm');
-  if(!validate()) return;
-  const button=document.querySelector('.panel.active .btn.primary');
-  button.disabled=true;
-  button.textContent='Sending…';
-  try{
-    const data=new FormData(form);
-    const response=await fetch("/",{method:"POST",body:data});
-    if(!response.ok) throw new Error("Submission failed");
-    form.style.display='none';
-    document.getElementById('success').classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }catch(err){
-    button.disabled=false;
-    button.textContent='Submit request ✦';
-    alert('Something went wrong. Please try again after the site is deployed on Netlify.');
-  }
-}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-</script>
+<section class="section" id="how">
+<div class="center"><div class="eyebrow">How it works</div><h2>Three steps.<br>One unforgettable gift.</h2></div>
+<div class="steps">
+<div class="step"><span class="num">01 · YOUR STORY</span><h3>Send the memories.</h3><p>Photos, dates, messages, little secrets — you give us the pieces that make the story yours.</p></div>
+<div class="step"><span class="num">02 · WE CREATE</span><h3>We build the journey.</h3><p>We turn those pieces into a cinematic, mobile-first experience with your chosen mood and style.</p></div>
+<div class="step"><span class="num">03 · YOU REVEAL</span><h3>Send the surprise.</h3><p>You receive a private link and QR code. Put it on a card, a gift, or simply send it to them.</p></div>
+</div>
+</section>
+
+<section class="section" id="packages">
+<div class="center"><div class="eyebrow">Choose your experience</div><h2>Made for every kind<br>of memory.</h2><p class="lead">Launch pricing — designed to help us build the first MOMENTO stories with real people.</p></div>
+<div class="cards">
+<div class="card"><span class="tag">Simple & sweet</span><h3>Starter</h3><div class="price">199 EGP</div><ul><li>Opening page</li><li>Photo gallery</li><li>Personal message</li><li>Simple timeline</li><li>Private link + QR</li><li>Mobile-friendly design</li></ul><a class="btn" href="#order">Choose Starter →</a></div>
+<div class="card"><span class="tag">Most loved</span><h3>Story</h3><div class="price">349 EGP</div><ul><li>Everything in Starter</li><li>Advanced timeline</li><li>Polaroid photo wall</li><li>Hidden memories</li><li>Animations</li><li>Password protection</li><li>Custom colors & type</li></ul><a class="btn" href="#order">Choose Story →</a></div>
+<div class="card"><span class="tag">Fully custom</span><h3>Cinematic</h3><div class="price">599 EGP</div><ul><li>Everything in Story</li><li>Custom visual direction</li><li>Cinematic opening</li><li>Custom storytelling</li><li>Extra sections</li><li>Surprise reveal</li><li>Priority delivery</li></ul><a class="btn" href="#order">Choose Cinematic →</a></div>
+</div>
+</section>
+
+<section class="section">
+<div class="feature">
+<div class="feature-img"></div>
+<div><div class="eyebrow">Why MOMENTO</div><div class="quote">“The best part isn't the website. It's seeing your story through their eyes.”</div><p class="lead" style="margin:28px 0 0">Every experience is built around the person receiving it. No generic gift box. No endless scrolling. Just your memories, arranged into a story.</p></div>
+</div>
+</section>
+
+<section class="section" id="faq">
+<div class="center"><div class="eyebrow">Questions</div><h2>Before you make<br>your MOMENTO.</h2></div>
+<div class="faq">
+<details><summary>How do I send my photos and memories?</summary><p>After choosing a package, you'll receive a simple form where you can send the details and photos we need.</p></details>
+<details><summary>Can I make it for a friend, not a partner?</summary><p>Absolutely. MOMENTO is for birthdays, friendships, anniversaries, graduations and any story worth remembering.</p></details>
+<details><summary>Will it work on a phone?</summary><p>Yes. The experience is designed mobile-first, so the recipient can open it directly from their phone.</p></details>
+<details><summary>Can I change the design?</summary><p>Yes. Story and Cinematic include increasing levels of personalization, from colors and typography to a fully custom visual direction.</p></details>
+</div>
+</section>
+
+<section class="cta-section" id="order">
+<div class="eyebrow">Your story could be next.</div>
+<h2 class="serif">Ready to turn your memories into something they can keep?</h2>
+<a class="btn" href="order-form/index.html">Create my MOMENTO →</a>
+</section>
+
+<footer><span>MOMENTO · Your memories deserve a place.</span><span>© 2026 MOMENTO</span></footer>
 </body>
 </html>
