@@ -1,161 +1,413 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Create your MOMENTO</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
-:root{--bg:#0b0a0a;--panel:#141211;--text:#f5eee7;--muted:#a79d95;--accent:#e4b89d;--line:rgba(255,255,255,.13)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;font-weight:300}
-.wrap{width:min(820px,92vw);margin:auto;padding:34px 0 80px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:55px}.logo{letter-spacing:.2em;font-size:17px}.stepcount{font-size:11px;color:var(--muted);letter-spacing:.15em}
-.progress{height:2px;background:var(--line);margin-bottom:60px}.bar{height:100%;width:16.66%;background:var(--accent);transition:.35s}
-.kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}.title{font:500 clamp(46px,8vw,78px)/.9 "Cormorant Garamond",serif;margin:0 0 18px}.lead{color:var(--muted);line-height:1.7;max-width:600px}
-.panel{display:none}.panel.active{display:block}.field{margin:28px 0}.field label{display:block;font-size:12px;margin-bottom:10px;color:#ded5ce}.hint{font-size:11px;color:#746d68;margin-top:7px}
-input,textarea,select{width:100%;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:3px;padding:15px 16px;font:300 14px Inter,sans-serif;outline:none}
-textarea{min-height:130px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:rgba(228,184,157,.7)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.choice input{display:none}.choice label{display:block;border:1px solid var(--line);background:var(--panel);padding:20px;cursor:pointer;min-height:80px;transition:.2s}.choice input:checked+label{border-color:var(--accent);background:#1b1513}.choice strong{display:block;font-family:"Cormorant Garamond",serif;font-size:25px;font-weight:500}.choice span{font-size:10px;color:var(--muted)}
-.actions{display:flex;justify-content:space-between;gap:12px;margin-top:45px}.btn{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.04);color:white;border-radius:999px;padding:14px 21px;cursor:pointer;font-size:11px;letter-spacing:.1em;text-transform:uppercase}.btn.primary{background:var(--text);color:#111;border-color:var(--text)}.btn:disabled{opacity:.35;cursor:not-allowed}
-.upload{border:1px dashed rgba(255,255,255,.25);padding:30px;text-align:center;background:#111}.upload input{border:0;padding:15px 0;background:transparent}.files{font-size:11px;color:var(--muted);line-height:1.8;text-align:left;margin-top:10px}
-.summary{border:1px solid var(--line);background:var(--panel);padding:25px}.summary div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:12px 0;gap:20px}.summary div:last-child{border-bottom:0}.summary span{color:var(--muted);font-size:12px}.summary b{font-weight:400;font-size:12px;text-align:right}
-.success{text-align:center;padding:70px 10px}.success h2{font:500 64px/1 "Cormorant Garamond",serif;margin:15px 0}.success p{color:var(--muted);line-height:1.8}.wa{display:inline-flex;margin-top:20px;text-decoration:none}
-.note{margin-top:30px;padding:16px;border-left:1px solid var(--accent);color:var(--muted);font-size:11px;line-height:1.7}
-@media(max-width:620px){.grid,.choices{grid-template-columns:1fr}.wrap{padding-top:25px}.actions{margin-top:35px}.title{font-size:54px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Create Your MOMENTO</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f3ee;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(700px, 92%);
+      margin: 0 auto;
+      padding: 45px 0;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .header h1 {
+      font-size: 42px;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      color: #777;
+      font-size: 15px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 15px 45px rgba(0,0,0,.08);
+    }
+
+    .field {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      outline: none;
+      background: #fff;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #222;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .choice {
+      position: relative;
+    }
+
+    .choice input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .choice label {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 14px;
+      cursor: pointer;
+      text-align: center;
+      margin: 0;
+      font-weight: normal;
+      transition: .2s;
+    }
+
+    .choice input:checked + label {
+      background: #222;
+      color: white;
+      border-color: #222;
+    }
+
+    .submit {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      background: #222;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .submit:hover {
+      opacity: .9;
+    }
+
+    .success {
+      display: none;
+      text-align: center;
+      padding: 35px 15px;
+    }
+
+    .success.active {
+      display: block;
+    }
+
+    .success h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .success p {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 25px;
+      color: #222;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .required {
+      color: #a33;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px 0;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .header h1 {
+        font-size: 32px;
+      }
+
+      .choices {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="wrap">
-  <div class="top"><div class="logo">MOMENTO</div><div class="stepcount" id="stepcount">01 / 06</div></div>
-  <div class="progress"><div class="bar" id="bar"></div></div>
 
-  <form id="orderForm" name="momento-orders" method="POST"
-      data-netlify="true" data-netlify-honeypot="bot-field"
-      enctype="multipart/form-data">
-      <input type="hidden" name="form-name" value="momento-orders">
-      <input type="hidden" name="subject" value="New MOMENTO Order">
-      <p style="display:none"><label>Don’t fill this out: <input name="bot-field"></label></p>
-    <section class="panel active">
-      <div class="kicker">01 · Tell us about it</div>
-      <h1 class="title">Let's start<br>with the story.</h1>
-      <p class="lead">A few details help us understand who this MOMENTO is for.</p>
-      <div class="grid">
-        <div class="field"><label>Your name *</label><input required name="from" placeholder="Your name"></div>
-        <div class="field"><label>Their name *</label><input required name="to" placeholder="Their name"></div>
-      </div>
-      <div class="grid">
-        <div class="field"><label>Your email *</label><input required type="email" name="email" placeholder="you@example.com"></div>
-        <div class="field"><label>WhatsApp number *</label><input required name="whatsapp" placeholder="+20 ..."></div>
-      </div>
-      <div class="field"><label>What's the occasion? *</label><select required name="occasion"><option value="">Choose one</option><option>Birthday</option><option>Anniversary</option><option>Friendship</option><option>Graduation</option><option>Just because</option><option>Other</option></select></div>
-      <div class="actions"><span></span><button class="btn primary" type="button" onclick="next()">Continue →</button></div>
-    </section>
+  <main class="container">
 
-    <section class="panel">
-      <div class="kicker">02 · Choose your vibe</div><h1 class="title">How should<br>it feel?</h1><p class="lead">Pick the mood. We'll use it as a starting point for the visual direction.</p>
-      <div class="choices field">
-        <div class="choice"><input type="radio" required name="vibe" id="romantic" value="Romantic"><label for="romantic"><strong>Romantic</strong><span>Soft · intimate · warm</span></label></div>
-        <div class="choice"><input type="radio" name="vibe" id="friendship" value="Friendship"><label for="friendship"><strong>Friendship</strong><span>Fun · playful · nostalgic</span></label></div>
-        <div class="choice"><input type="radio" name="vibe" id="cinematic" value="Cinematic"><label for="cinematic"><strong>Cinematic</strong><span>Moody · dramatic · elegant</span></label></div>
-        <div class="choice"><input type="radio" name="vibe" id="minimal" value="Minimal"><label for="minimal"><strong>Minimal</strong><span>Clean · calm · timeless</span></label></div>
-      </div>
-      <div class="field"><label>Favorite color (optional)</label><input name="color" placeholder="e.g. black, cream, burgundy"></div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="next()">Continue →</button></div>
-    </section>
+    <header class="header">
+      <h1>MOMENTO</h1>
+      <p>Create something made from your memories.</p>
+    </header>
 
-    <section class="panel">
-      <div class="kicker">03 · Tell us the story</div><h1 class="title">Give us<br>the good parts.</h1><p class="lead">Don't worry about perfect writing. Just tell us what happened and we'll shape it into the experience.</p>
-      <div class="field"><label>Important dates & what happened</label><textarea name="timeline" placeholder="20/02 — the day we met...
-06/03 — our first adventure...
-18/04 — that unforgettable day..."></textarea></div>
-      <div class="field"><label>Favorite memories / inside jokes</label><textarea name="memories" placeholder="The little moments you never want to forget..."></textarea></div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="next()">Continue →</button></div>
-    </section>
+    <section class="card">
 
-    <section class="panel">
-      <div class="kicker">04 · Add the memories</div><h1 class="title">Now bring<br>it to life.</h1><p class="lead">Choose the photos you'd like us to use. For the first version, 8–20 good photos is a great range.</p>
-      <div class="upload field">
-        <label>Upload your photos (up to 8 for this MVP)</label>
-        <div class="grid" style="margin-top:15px">
-          <input name="photo-01" type="file" accept="image/*">
-          <input name="photo-02" type="file" accept="image/*">
-          <input name="photo-03" type="file" accept="image/*">
-          <input name="photo-04" type="file" accept="image/*">
-          <input name="photo-05" type="file" accept="image/*">
-          <input name="photo-06" type="file" accept="image/*">
-          <input name="photo-07" type="file" accept="image/*">
-          <input name="photo-08" type="file" accept="image/*">
+      <form
+        name="momento-request"
+        method="POST"
+        action="/success.html"
+        data-netlify="true"
+        enctype="multipart/form-data"
+      >
+
+        <input type="hidden" name="form-name" value="momento-request">
+
+        <!-- FOR -->
+        <div class="field">
+          <label for="for">For <span class="required">*</span></label>
+          <input
+            id="for"
+            type="text"
+            name="for"
+            placeholder="Who is this MOMENTO for?"
+            required
+          >
         </div>
-        <div class="files">For this first live version, keep the total upload size under 8 MB. We can upgrade the upload system later for larger galleries.</div>
+
+        <!-- FROM -->
+        <div class="field">
+          <label for="from">From <span class="required">*</span></label>
+          <input
+            id="from"
+            type="text"
+            name="from"
+            placeholder="Who is it from?"
+            required
+          >
+        </div>
+
+        <!-- OCCASION -->
+        <div class="field">
+          <label for="occasion">Occasion <span class="required">*</span></label>
+
+          <select id="occasion" name="occasion" required>
+            <option value="">Choose an occasion</option>
+            <option value="Birthday">Birthday</option>
+            <option value="Anniversary">Anniversary</option>
+            <option value="Friendship">Friendship</option>
+            <option value="Graduation">Graduation</option>
+            <option value="Just Because">Just Because</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- VIBE -->
+        <div class="field">
+          <label>Vibe <span class="required">*</span></label>
+
+          <div class="choices">
+
+            <div class="choice">
+              <input
+                type="radio"
+                id="vibe-soft"
+                name="vibe"
+                value="Soft & Romantic"
+                required
+              >
+              <label for="vibe-soft">Soft & Romantic</label>
+            </div>
+
+            <div class="choice">
+              <input
+                type="radio"
+                id="vibe-fun"
+                name="vibe"
+                value="Fun & Playful"
+              >
+              <label for="vibe-fun">Fun & Playful</label>
+            </div>
+
+            <div class="choice">
+              <input
+                type="radio"
+                id="vibe-nostalgic"
+                name="vibe"
+                value="Nostalgic"
+              >
+              <label for="vibe-nostalgic">Nostalgic</label>
+            </div>
+
+            <div class="choice">
+              <input
+                type="radio"
+                id="vibe-minimal"
+                name="vibe"
+                value="Minimal & Elegant"
+              >
+              <label for="vibe-minimal">Minimal & Elegant</label>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PACKAGE -->
+        <div class="field">
+          <label>Package <span class="required">*</span></label>
+
+          <div class="choices">
+
+            <div class="choice">
+              <input
+                type="radio"
+                id="package-basic"
+                name="package"
+                value="Basic"
+                required
+              >
+              <label for="package-basic">Basic</label>
+            </div>
+
+            <div class="choice">
+              <input
+                type="radio"
+                id="package-standard"
+                name="package"
+                value="Standard"
+              >
+              <label for="package-standard">Standard</label>
+            </div>
+
+            <div class="choice">
+              <input
+                type="radio"
+                id="package-premium"
+                name="package"
+                value="Premium"
+              >
+              <label for="package-premium">Premium</label>
+            </div>
+
+            <div class="choice">
+              <input
+                type="radio"
+                id="package-custom"
+                name="package"
+                value="Custom"
+              >
+              <label for="package-custom">Custom</label>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DELIVERY -->
+        <div class="field">
+          <label for="delivery">Delivery <span class="required">*</span></label>
+
+          <select id="delivery" name="delivery" required>
+            <option value="">Choose delivery method</option>
+            <option value="Digital">Digital</option>
+            <option value="Physical">Physical</option>
+            <option value="Both">Digital + Physical</option>
+          </select>
+        </div>
+
+        <!-- PHOTOS -->
+        <div class="field">
+          <label for="photos">Photos</label>
+
+          <input
+            id="photos"
+            type="file"
+            name="photos"
+            accept="image/*"
+            multiple
+          >
+
+          <small style="display:block;margin-top:8px;color:#888;">
+            Add the photos you'd like to include in your MOMENTO.
+          </small>
+        </div>
+
+        <!-- EXTRA MESSAGE -->
+        <div class="field">
+          <label for="message">Anything else?</label>
+
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Tell us anything you'd like us to know..."
+          ></textarea>
+        </div>
+
+        <button class="submit" type="submit">
+          Submit request ✦
+        </button>
+
+      </form>
+
+      <div class="success" id="success">
+        <h2>Request received ✨</h2>
+
+        <p>
+          Your MOMENTO request has been received successfully.
+          <br>
+          We'll start working on your memory soon.
+        </p>
+
+        <a class="back" href="index.html">
+          Back to MOMENTO
+        </a>
       </div>
-      <div class="field"><label>Anything special about the photos?</label><textarea name="photoNotes" placeholder="e.g. Put the beach photo near the end..."></textarea></div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="next()">Continue →</button></div>
+
     </section>
 
-    <section class="panel">
-      <div class="kicker">05 · Final details</div><h1 class="title">One last<br>thing.</h1>
-      <div class="grid">
-        <div class="field"><label>Package *</label><select required name="package"><option value="">Choose package</option><option>Starter — 199 EGP</option><option>Story — 349 EGP</option><option>Cinematic — 599 EGP</option></select></div>
-        <div class="field"><label>Preferred delivery date *</label><input required name="delivery" type="date"></div>
-      </div>
-      <div class="field"><label>Final message</label><textarea name="letter" placeholder="The message you'd like at the end of the journey..."></textarea></div>
-      <div class="field"><label>Extra notes</label><textarea name="notes" placeholder="Anything else we should know?"></textarea></div>
-      <div class="note">This form is prepared for Netlify Forms. Once deployed on Netlify, orders will appear in your Netlify Forms dashboard.</div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="review()">Review →</button></div>
-    </section>
+  </main>
 
-    <section class="panel">
-      <div class="kicker">06 · Almost there</div><h1 class="title">Your MOMENTO<br>is taking shape.</h1>
-      <div class="summary" id="summary"></div>
-      <div class="note">After submitting, the final live version will send the order to our dashboard and you'll receive a confirmation. For now, this is a design prototype.</div>
-      <div class="actions"><button class="btn" type="button" onclick="prev()">← Back</button><button class="btn primary" type="button" onclick="finish()">Submit request ✦</button></div>
-    </section>
-  </form>
-
-  <section class="panel" id="success">
-    <div class="success">
-      <div class="kicker">MOMENTO · Request received</div>
-      <h2>Beautiful.<br>We're ready.</h2>
-      <p>Your request has been prepared locally as a prototype.<br>Next, we'll connect this flow to real submissions and payments.</p>
-      <a class="btn wa" href="https://wa.me/?text=Hi%20MOMENTO!%20I%20just%20submitted%20a%20request." target="_blank">Continue on WhatsApp →</a>
-    </div>
-  </section>
-</div>
-
-<script>
-let step=0;
-const panels=[...document.querySelectorAll('#orderForm .panel')];
-const count=document.getElementById('stepcount'),bar=document.getElementById('bar');
-function show(n){step=n;panels.forEach((p,i)=>p.classList.toggle('active',i===n));count.textContent=String(n+1).padStart(2,'0')+' / 06';bar.style.width=((n+1)/6*100)+'%';window.scrollTo({top:0,behavior:'smooth'})}
-function validate(){const fields=panels[step].querySelectorAll('input[required],select[required],textarea[required]');for(const f of fields){if(!f.checkValidity()){f.reportValidity();return false}}return true}
-function next(){if(validate())show(step+1)}function prev(){show(step-1)}
-
-function review(){
- if(!validate())return;
- const fd=new FormData(document.getElementById('orderForm'));
- const rows=[['For',fd.get('to')],['From',fd.get('from')],['Occasion',fd.get('occasion')],['Vibe',fd.get('vibe')],['Package',fd.get('package')],['Delivery',fd.get('delivery')],['Photos',[...document.querySelectorAll('input[type=file]')].filter(x=>x.files.length).length+' selected']];
- document.getElementById('summary').innerHTML=rows.map(r=>`<div><span>${r[0]}</span><b>${escapeHtml(r[1]||'—')}</b></div>`).join('');
- show(5);
-}
-async function finish(){
-  const form=document.getElementById('orderForm');
-  if(!validate()) return;
-  const button=document.querySelector('.panel.active .btn.primary');
-  button.disabled=true;
-  button.textContent='Sending…';
-  try{
-    const data=new FormData(form);
-    const response=await fetch("/",{method:"POST",body:data});
-    if(!response.ok) throw new Error("Submission failed");
-    form.style.display='none';
-    document.getElementById('success').classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }catch(err){
-    button.disabled=false;
-    button.textContent='Submit request ✦';
-    alert('Something went wrong. Please try again after the site is deployed on Netlify.');
-  }
-}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-</script>
 </body>
 </html>
