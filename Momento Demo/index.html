@@ -1,1 +1,181 @@
-content://com.coloros.filemanager/root/data/data/com.coloros.filemanager/cache/preview_cache/scraps/9f34c177e0694a2d3e0c897f3e340204.html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MOMENTO — The Story We Never Told</title>
+<meta name="description" content="A cinematic interactive memory experience by MOMENTO.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+:root{--bg:#0c0b0b;--paper:#f4eee7;--muted:#bdb3aa;--accent:#e6b99d;--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--paper);font-family:Inter,sans-serif;font-weight:300}
+button{font:inherit}.serif{font-family:"Cormorant Garamond",serif}
+.hero{min-height:100svh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background:
+linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.72)),
+url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1800&q=85") center/cover}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,transparent 0 20%,rgba(0,0,0,.55) 85%)}
+.hero-content{position:relative;z-index:1;max-width:850px;padding:32px}
+.kicker{letter-spacing:.28em;text-transform:uppercase;font-size:11px;color:#ded1c7;margin-bottom:22px}
+h1{font-size:clamp(62px,11vw,132px);line-height:.8;margin:0 0 28px;font-weight:500}
+.hero p{font-family:"Cormorant Garamond",serif;font-size:clamp(24px,3vw,38px);margin:0 auto 38px;max-width:650px;color:#eee4db}
+.cta{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.45);color:white;background:rgba(255,255,255,.06);padding:15px 22px;border-radius:999px;cursor:pointer;backdrop-filter:blur(10px);transition:.3s}
+.cta:hover{background:white;color:#111;transform:translateY(-2px)}
+.scroll{position:absolute;z-index:1;bottom:24px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.7}
+.section{padding:110px 7vw;max-width:1250px;margin:auto}
+.eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.title{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(45px,7vw,86px);line-height:.95;margin:0 0 22px}
+.lead{font-size:16px;line-height:1.8;color:var(--muted);max-width:620px}
+.timeline{position:relative;margin-top:70px}
+.timeline:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)}
+.event{display:grid;grid-template-columns:1fr 1fr;gap:55px;min-height:430px;align-items:center;position:relative}
+.event:nth-child(even) .event-copy{order:2}.event:nth-child(even) .event-image{order:1}
+.dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;border:2px solid var(--paper);border-radius:50%;background:var(--bg);z-index:2}
+.event-image{height:360px;border-radius:4px;overflow:hidden;background:#1a1715}
+.event-image img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.event:hover img{transform:scale(1.035)}
+.date{font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:12px}
+.event h3{font-family:"Cormorant Garamond",serif;font-size:44px;font-weight:500;margin:0 0 15px}
+.event p{color:var(--muted);line-height:1.8;max-width:440px}
+.wall{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:55px}
+.card{overflow:hidden;border-radius:3px;background:#191615;position:relative}
+.card img{width:100%;height:100%;object-fit:cover;display:block}
+.card:nth-child(1){grid-column:span 7;height:460px}.card:nth-child(2){grid-column:span 5;height:460px}
+.card:nth-child(3){grid-column:span 5;height:390px}.card:nth-child(4){grid-column:span 7;height:390px}
+.card:nth-child(5){grid-column:span 4;height:320px}.card:nth-child(6){grid-column:span 8;height:320px}
+.reveal-wrap{display:grid;place-items:center;text-align:center;padding:80px 20px}
+.reveal{width:min(620px,100%);min-height:260px;border:1px solid var(--line);padding:60px 35px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.01))}
+.reveal button{border:0;background:none;color:var(--paper);cursor:pointer;font-size:17px}
+.reveal-content{display:none}.reveal.open .reveal-content{display:block}.reveal.open .reveal-button{display:none}
+.letter{background:var(--paper);color:#1c1714;max-width:760px;margin:50px auto 0;padding:65px clamp(30px,7vw,90px);box-shadow:0 20px 80px rgba(0,0,0,.3)}
+.letter h3{font-size:42px;margin:0 0 30px;font-family:"Cormorant Garamond",serif;font-weight:500}
+.letter p{font-family:"Cormorant Garamond",serif;font-size:23px;line-height:1.65}
+.final{min-height:90svh;display:grid;place-items:center;text-align:center;padding:70px 25px;background:
+linear-gradient(180deg,var(--bg),rgba(0,0,0,.3)),
+url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=85") center/cover}
+.final-inner{max-width:800px}.final h2{font-family:"Cormorant Garamond",serif;font-size:clamp(55px,9vw,110px);font-weight:500;line-height:.88;margin:15px 0 35px}
+.footer{padding:30px 7vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:#887f78;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.replay{cursor:pointer;color:var(--paper);text-decoration:underline;text-underline-offset:4px}
+.fade{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}.fade.visible{opacity:1;transform:none}
+@media(max-width:760px){
+ .section{padding:80px 22px}.timeline:before{left:8px}.event{display:block;padding-left:30px;min-height:auto;margin-bottom:65px}.event:nth-child(even) .event-copy,.event:nth-child(even) .event-image{order:initial}
+ .dot{left:8px;top:20px}.event-image{height:330px;margin-bottom:24px}.event h3{font-size:39px}
+ .wall{display:grid;grid-template-columns:1fr 1fr}.card,.card:nth-child(n){grid-column:auto;height:260px}.card:nth-child(1),.card:nth-child(4),.card:nth-child(6){height:330px}
+ .footer{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="hero-content fade">
+    <div class="kicker">A MOMENTO EXPERIENCE</div>
+    <h1 class="serif">The Story<br>We Never Told</h1>
+    <p>Some memories deserve more than a photo.</p>
+    <button class="cta" onclick="document.querySelector('#begin').scrollIntoView({behavior:'smooth'})">Begin the journey <span>→</span></button>
+  </div>
+  <div class="scroll">Scroll to remember ↓</div>
+</header>
+
+<main id="begin">
+<section class="section fade">
+  <div class="eyebrow">Chapter 01 · The Beginning</div>
+  <h2 class="title">It started with<br>one ordinary day.</h2>
+  <p class="lead">We didn't know it then, but some days quietly become the first page of a story you'll keep coming back to.</p>
+</section>
+
+<section class="section timeline">
+  <article class="event fade">
+    <span class="dot"></span>
+    <div class="event-copy">
+      <div class="date">20 · 02 · 2026</div>
+      <h3>The beginning.</h3>
+      <p>A normal day, a small moment, and somehow it became the date we'd remember.</p>
+    </div>
+    <div class="event-image"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1100&q=85" alt="Friends sharing a moment"></div>
+  </article>
+  <article class="event fade">
+    <span class="dot"></span>
+    <div class="event-copy">
+      <div class="date">06 · 03 · 2026</div>
+      <h3>The first adventure.</h3>
+      <p>No perfect plan. Just somewhere to go, something to laugh about, and a memory waiting to happen.</p>
+    </div>
+    <div class="event-image"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=85" alt="A road trip landscape"></div>
+  </article>
+  <article class="event fade">
+    <span class="dot"></span>
+    <div class="event-copy">
+      <div class="date">18 · 04 · 2026</div>
+      <h3>The little things.</h3>
+      <p>The jokes, the random pictures, the conversations that lasted longer than planned. Those became the good part.</p>
+    </div>
+    <div class="event-image"><img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1100&q=85" alt="Two people laughing together"></div>
+  </article>
+</section>
+
+<section class="section fade">
+  <div class="eyebrow">Chapter 02 · Little Moments</div>
+  <h2 class="title">A thousand tiny<br>reasons to remember.</h2>
+  <div class="wall">
+    <div class="card"><img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1000&q=85" alt=""></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=85" alt=""></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=900&q=85" alt=""></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85" alt=""></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?auto=format&fit=crop&w=900&q=85" alt=""></div>
+    <div class="card"><img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&w=1100&q=85" alt=""></div>
+  </div>
+</section>
+
+<section class="section fade">
+  <div class="eyebrow">Chapter 03 · Things You Might Not Know</div>
+  <h2 class="title">Some memories<br>are hidden in plain sight.</h2>
+  <div class="reveal-wrap">
+    <div class="reveal" id="reveal">
+      <div class="reveal-button">
+        <button onclick="document.getElementById('reveal').classList.add('open')">Tap to reveal a little secret ✦</button>
+      </div>
+      <div class="reveal-content">
+        <div class="eyebrow">A little secret</div>
+        <h3 class="serif" style="font-size:48px;margin:10px 0 15px">That one “random” photo?</h3>
+        <p style="color:#bdb3aa;line-height:1.8">It was never random. It became one of the pictures we came back to the most.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section fade">
+  <div class="eyebrow">Chapter 04 · A Letter</div>
+  <h2 class="title">For the person<br>who was there.</h2>
+  <div class="letter">
+    <h3>Hey you,</h3>
+    <p>There are memories you can explain, and there are memories you can only feel.</p>
+    <p>Thank you for all the ordinary days that somehow became my favorite ones. For the laughs I didn't expect, the photos we almost didn't take, and every little moment that made the story ours.</p>
+    <p>If I could go back, I wouldn't change much.</p>
+    <p>I'd just live it again.</p>
+    <p>— Always, from someone who remembers.</p>
+  </div>
+</section>
+
+<section class="final" id="final">
+  <div class="final-inner fade">
+    <div class="kicker">The End · For now</div>
+    <h2>Would you<br>live it all again?</h2>
+    <button class="cta" onclick="window.scrollTo({top:0,behavior:'smooth'})">Live again with the journey ↻</button>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <span>MOMENTO · Your memories deserve a place.</span>
+  <span class="replay" onclick="window.scrollTo({top:0,behavior:'smooth'})">Replay journey</span>
+</footer>
+
+<script>
+const io=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:.14});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+window.addEventListener('load',()=>document.querySelector('.hero .fade').classList.add('visible'));
+</script>
+</body>
+</html>
