@@ -6,6 +6,9 @@
 
   <title>Create Your MOMENTO</title>
 
+  <!-- Forminit SDK -->
+  <script src="https://forminit.com/sdk/v1/forminit.js"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -22,7 +25,7 @@
 
     .container {
       width: min(700px, 92%);
-      margin: 0 auto;
+      margin: auto;
       padding: 45px 0;
     }
 
@@ -33,7 +36,7 @@
 
     .header h1 {
       font-size: 42px;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       margin-bottom: 10px;
     }
 
@@ -43,7 +46,7 @@
     }
 
     .card {
-      background: white;
+      background: #fff;
       border-radius: 22px;
       padding: 30px;
       box-shadow: 0 15px 45px rgba(0,0,0,.08);
@@ -53,7 +56,7 @@
       margin-bottom: 22px;
     }
 
-    label {
+    label.title {
       display: block;
       font-weight: bold;
       margin-bottom: 8px;
@@ -68,8 +71,8 @@
       border-radius: 12px;
       padding: 14px;
       font-size: 15px;
-      outline: none;
       background: #fff;
+      outline: none;
     }
 
     input:focus,
@@ -100,19 +103,19 @@
     }
 
     .choice label {
+      display: block;
       border: 1px solid #ddd;
       border-radius: 12px;
       padding: 14px;
-      cursor: pointer;
       text-align: center;
-      margin: 0;
-      font-weight: normal;
+      cursor: pointer;
+      font-size: 14px;
       transition: .2s;
     }
 
     .choice input:checked + label {
       background: #222;
-      color: white;
+      color: #fff;
       border-color: #222;
     }
 
@@ -122,21 +125,22 @@
       border-radius: 14px;
       padding: 16px;
       background: #222;
-      color: white;
+      color: #fff;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       margin-top: 8px;
     }
 
-    .submit:hover {
-      opacity: .9;
+    .submit:disabled {
+      opacity: .6;
+      cursor: wait;
     }
 
     .success {
       display: none;
       text-align: center;
-      padding: 35px 15px;
+      padding: 35px 10px;
     }
 
     .success.active {
@@ -161,8 +165,14 @@
       font-weight: bold;
     }
 
-    .required {
+    .error {
+      display: none;
       color: #a33;
+      background: #fff1f1;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 15px;
+      font-size: 14px;
     }
 
     @media (max-width: 600px) {
@@ -197,22 +207,17 @@
     <section class="card">
 
       <form
-        name="momento-request"
-        method="POST"
-        action="/success.html"
-        data-netlify="true"
+        id="momento-form"
         enctype="multipart/form-data"
       >
 
-        <input type="hidden" name="form-name" value="momento-request">
-
         <!-- FOR -->
         <div class="field">
-          <label for="for">For <span class="required">*</span></label>
+          <label class="title" for="for">For *</label>
           <input
             id="for"
             type="text"
-            name="for"
+            name="fi-text-for"
             placeholder="Who is this MOMENTO for?"
             required
           >
@@ -220,11 +225,11 @@
 
         <!-- FROM -->
         <div class="field">
-          <label for="from">From <span class="required">*</span></label>
+          <label class="title" for="from">From *</label>
           <input
             id="from"
             type="text"
-            name="from"
+            name="fi-text-from"
             placeholder="Who is it from?"
             required
           >
@@ -232,9 +237,13 @@
 
         <!-- OCCASION -->
         <div class="field">
-          <label for="occasion">Occasion <span class="required">*</span></label>
+          <label class="title" for="occasion">Occasion *</label>
 
-          <select id="occasion" name="occasion" required>
+          <select
+            id="occasion"
+            name="fi-select-occasion"
+            required
+          >
             <option value="">Choose an occasion</option>
             <option value="Birthday">Birthday</option>
             <option value="Anniversary">Anniversary</option>
@@ -247,15 +256,15 @@
 
         <!-- VIBE -->
         <div class="field">
-          <label>Vibe <span class="required">*</span></label>
+          <label class="title">Vibe *</label>
 
           <div class="choices">
 
             <div class="choice">
               <input
-                type="radio"
                 id="vibe-soft"
-                name="vibe"
+                type="radio"
+                name="fi-radio-vibe"
                 value="Soft & Romantic"
                 required
               >
@@ -264,9 +273,9 @@
 
             <div class="choice">
               <input
-                type="radio"
                 id="vibe-fun"
-                name="vibe"
+                type="radio"
+                name="fi-radio-vibe"
                 value="Fun & Playful"
               >
               <label for="vibe-fun">Fun & Playful</label>
@@ -274,9 +283,9 @@
 
             <div class="choice">
               <input
-                type="radio"
                 id="vibe-nostalgic"
-                name="vibe"
+                type="radio"
+                name="fi-radio-vibe"
                 value="Nostalgic"
               >
               <label for="vibe-nostalgic">Nostalgic</label>
@@ -284,9 +293,9 @@
 
             <div class="choice">
               <input
-                type="radio"
                 id="vibe-minimal"
-                name="vibe"
+                type="radio"
+                name="fi-radio-vibe"
                 value="Minimal & Elegant"
               >
               <label for="vibe-minimal">Minimal & Elegant</label>
@@ -297,15 +306,15 @@
 
         <!-- PACKAGE -->
         <div class="field">
-          <label>Package <span class="required">*</span></label>
+          <label class="title">Package *</label>
 
           <div class="choices">
 
             <div class="choice">
               <input
-                type="radio"
                 id="package-basic"
-                name="package"
+                type="radio"
+                name="fi-radio-package"
                 value="Basic"
                 required
               >
@@ -314,9 +323,9 @@
 
             <div class="choice">
               <input
-                type="radio"
                 id="package-standard"
-                name="package"
+                type="radio"
+                name="fi-radio-package"
                 value="Standard"
               >
               <label for="package-standard">Standard</label>
@@ -324,9 +333,9 @@
 
             <div class="choice">
               <input
-                type="radio"
                 id="package-premium"
-                name="package"
+                type="radio"
+                name="fi-radio-package"
                 value="Premium"
               >
               <label for="package-premium">Premium</label>
@@ -334,9 +343,9 @@
 
             <div class="choice">
               <input
-                type="radio"
                 id="package-custom"
-                name="package"
+                type="radio"
+                name="fi-radio-package"
                 value="Custom"
               >
               <label for="package-custom">Custom</label>
@@ -347,51 +356,64 @@
 
         <!-- DELIVERY -->
         <div class="field">
-          <label for="delivery">Delivery <span class="required">*</span></label>
+          <label class="title" for="delivery">Delivery *</label>
 
-          <select id="delivery" name="delivery" required>
+          <select
+            id="delivery"
+            name="fi-select-delivery"
+            required
+          >
             <option value="">Choose delivery method</option>
             <option value="Digital">Digital</option>
             <option value="Physical">Physical</option>
-            <option value="Both">Digital + Physical</option>
+            <option value="Digital + Physical">Digital + Physical</option>
           </select>
         </div>
 
         <!-- PHOTOS -->
         <div class="field">
-          <label for="photos">Photos</label>
+          <label class="title" for="photos">Photos *</label>
 
           <input
             id="photos"
             type="file"
-            name="photos"
+            name="fi-file-photos[]"
             accept="image/*"
             multiple
+            required
           >
 
           <small style="display:block;margin-top:8px;color:#888;">
-            Add the photos you'd like to include in your MOMENTO.
+            Choose the photos you'd like to include in your MOMENTO.
           </small>
         </div>
 
         <!-- EXTRA MESSAGE -->
         <div class="field">
-          <label for="message">Anything else?</label>
+          <label class="title" for="message">Anything else?</label>
 
           <textarea
             id="message"
-            name="message"
+            name="fi-text-message"
             placeholder="Tell us anything you'd like us to know..."
           ></textarea>
         </div>
 
-        <button class="submit" type="submit">
+        <button
+          class="submit"
+          id="submit-button"
+          type="submit"
+        >
           Submit request ✦
         </button>
 
+        <div class="error" id="error-message"></div>
+
       </form>
 
+      <!-- SUCCESS -->
       <div class="success" id="success">
+
         <h2>Request received ✨</h2>
 
         <p>
@@ -403,11 +425,65 @@
         <a class="back" href="index.html">
           Back to MOMENTO
         </a>
+
       </div>
 
     </section>
 
   </main>
 
+  <script>
+    const forminit = new Forminit();
+    const FORM_ID = "6qmuru0tvu8";
+
+    const form = document.getElementById("momento-form");
+    const button = document.getElementById("submit-button");
+    const success = document.getElementById("success");
+    const errorMessage = document.getElementById("error-message");
+
+    form.addEventListener("submit", async function (e) {
+
+      e.preventDefault();
+
+      button.disabled = true;
+      button.textContent = "Sending…";
+      errorMessage.style.display = "none";
+
+      try {
+
+        const formData = new FormData(form);
+
+        const result = await forminit.submit(
+          FORM_ID,
+          formData
+        );
+
+        if (result.error) {
+          throw new Error(result.error.message);
+        }
+
+        form.style.display = "none";
+        success.classList.add("active");
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      } catch (error) {
+
+        button.disabled = false;
+        button.textContent = "Submit request ✦";
+
+        errorMessage.textContent =
+          error.message ||
+          "Something went wrong. Please try again.";
+
+        errorMessage.style.display = "block";
+      }
+
+    });
+  </script>
+
 </body>
-</html>
+  </html>
